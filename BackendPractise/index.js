@@ -3,7 +3,7 @@
 // Setting express framework ans store in app variable
 const express = require('express')
 const app = express();
-
+const path = require('path')
 //Middlewear setUp
 
 //Seeting Up Application config
@@ -16,11 +16,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 //it allows EJS like static file i-e CSS HTML images, videos
-app.use(express.static(Path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,"public")))
 
 //Route example
 app.get("/",function(req,res){
-  res.send('Hello world')
+  res.render('index.ejs')
 })
 
 //Server started
