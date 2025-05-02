@@ -3,7 +3,8 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const todoRoutes = require('./routes/todoRoutes');
 const cookieParser = require('cookie-parser')
-
+const authRoutes = require('./routes/authRoutes')
+require('dotenv').config();
 const app = express();
 const port = 5000;
 
@@ -15,15 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/todos', todoRoutes);
-
-
-app.get('/cookie',(req,res)=>{
-  res.cookie('name','ZamaCookie' , {
-    httpOnly:true,
-    maxAge:1000 * 60 * 60
-  })
-  res.send('Cookie Set')
-})
+app.use('/api/auth',authRoutes)
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
